@@ -1,2 +1,2 @@
 # MaltzKevin_CIS_CSC_17a_Fall2017
-Maltz, Kevin  CIS 17a-48969 Riverside City College ( RCC )
+Repository for Riverside City College (RCC) CSC/CIS 17A 48969 with Dr. Mark Lehr
