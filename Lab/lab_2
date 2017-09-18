@@ -6,7 +6,7 @@
 
 /* 
  * File:   main.cpp
- * Author: Peter
+ * Author: Kevin Maltz
  *
  * Created on September 18, 2017, 11:20 AM
  */
@@ -18,9 +18,13 @@
 
 using namespace std;
 
-float mean(int num[], const int SIZE);
+float cMean(int num[], const int SIZE);
 
-float median(int num[], const int SIZE);
+float cMedian(int num[], const int SIZE);
+
+void filAray(int num[], const int SIZE);
+
+void cMode(int num[],int const SIZE, int modeAr[]);
 
 /*
  * 
@@ -30,23 +34,40 @@ int main(int argc, char** argv)
     const int SIZE = 100;
     
     int nums[SIZE];
-    srand(time(NULL));
-    for(int i=0; i < SIZE; i++)
+    int mode[SIZE/2 + 3];
+    float median;
+    float mean;
+    
+    //Fill array
+    filAray(nums, SIZE);
+    
+    //Sort array
+    int minV;
+    int minI;
+    for(int i=0; i < (SIZE + 1); i++)
     {
-        nums[i] = rand()%100;
+        minI = i;
+        minV = nums[i];
+        for(int j=i+1; j < SIZE; j++)
+        {
+            if(nums[j] < minV)
+            {
+                minV = nums[j];
+                minI = j;
+            }
+        }
+        nums[minI] = nums[i];
+        nums[i] = minV;
     }
     
-    for(int i=0; i < SIZE; i++)
-    {
-        if((i%10)==0)
-            cout << endl;
-        cout << setw(2) << nums[i] << "  ";
-        
-    }
+    mean = cMean(nums, SIZE);
+    median = cMedian(nums, SIZE);
+    cMode(nums, SIZE, mode);
+    
     return 0;
 }
 
-float mean(int num[], const int SIZE)
+float cMean(int num[], const int SIZE)
 {
     int total = 0;
     for(int i=0; i < SIZE; i++)
@@ -56,7 +77,7 @@ float mean(int num[], const int SIZE)
     return static_cast<float>(total)/SIZE;
 }
 
-float median(int num[], const int SIZE)
+float cMedian(int num[], const int SIZE)
 {
     float median;
     
@@ -65,4 +86,46 @@ float median(int num[], const int SIZE)
     else
         median = num[SIZE/2 + 1];
     return median;
+}
+
+void filAray(int num[], const int SIZE)
+{
+    srand(time(NULL));
+    
+    //Fill array
+    for(int i=0; i < SIZE; i++)
+    {
+        num[i] = rand()%100;
+    }
+}
+void cMode(int num[],int const SIZE, int modeAr[])
+{
+    int cI = 2;  //current modeAr index
+    int freq = 1;   //frequency of a number
+    int maxf = 2; //Max frequency found so far
+    
+    for(int i=0; i < SIZE;i++)
+    {
+        if(num[i]==num[i+1])
+            freq++; //add +1 to current frequency
+        else
+        {
+            if(freq > maxf)
+            {
+                modeAr[0] = num[i];
+                cI = 3;
+                maxf = freq;
+                freq = 0;
+            }
+            else if(freq == maxf)
+            {
+                modeAr[cI] = num[i];
+                cI++;
+                freq = 0;
+            }
+        }
+    }
+    
+    modeAr[0] = cI - 1;
+    modeAr[1] = maxf;
 }
