@@ -1,0 +1,68 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   main.cpp
+ * Author: Peter
+ *
+ * Created on September 18, 2017, 11:20 AM
+ */
+
+#include <cstdlib>
+#include <iostream>
+#include <ctime>
+#include <iomanip>
+
+using namespace std;
+
+float mean(int num[], const int SIZE);
+
+float median(int num[], const int SIZE);
+
+/*
+ * 
+ */
+int main(int argc, char** argv) 
+{
+    const int SIZE = 100;
+    
+    int nums[SIZE];
+    srand(time(NULL));
+    for(int i=0; i < SIZE; i++)
+    {
+        nums[i] = rand()%100;
+    }
+    
+    for(int i=0; i < SIZE; i++)
+    {
+        if((i%10)==0)
+            cout << endl;
+        cout << setw(2) << nums[i] << "  ";
+        
+    }
+    return 0;
+}
+
+float mean(int num[], const int SIZE)
+{
+    int total = 0;
+    for(int i=0; i < SIZE; i++)
+    {
+        total += num[i];
+    }
+    return static_cast<float>(total)/SIZE;
+}
+
+float median(int num[], const int SIZE)
+{
+    float median;
+    
+    if(SIZE%2==0)
+        median = (num[SIZE/2] + num[SIZE/2 + 1]) / 2.0;
+    else
+        median = num[SIZE/2 + 1];
+    return median;
+}
