@@ -1,0 +1,51 @@
+int *clcMode(const int NUM[],const int SIZE, int &cIndx)
+{
+    int *rtrnMde;                   //The pointer to be returned by the function
+    int *findMde = new int[SIZE/2]; //An array for calculating the mode
+    
+    //Initialize frequency and max frequency variables
+    int freq = 1;                   //frequency of a number
+    int maxf = 2;                   //Max frequency found so far
+    
+    //Start index at beginning of array
+    cIndx = 0;
+    
+    //Sentinel value indicating no mode found
+    findMde[0] = -1;
+    
+    for(int i=0; i < SIZE;i++)
+    {
+        if(NUM[i]==NUM[i+1])
+            freq++; //add +1 to current frequency
+        else if(freq > maxf)
+        {
+            findMde[0] = NUM[i];
+            cIndx = 1;
+            maxf = freq;
+            freq = 1;
+        }
+        else if(freq == maxf)
+        {
+            findMde[cIndx] = NUM[i];
+            cIndx++;
+            freq = 1;
+        }
+    }
+    
+    //Allocate rtrnMde the needed memory to return results properly
+    if(findMde[0]==-1)
+    {
+        rtrnMde = new int;
+        *rtrnMde = *findMde;
+    }
+    else
+    {
+        rtrnMde = new int[cIndx];
+        for(int i=0; i < cIndx; i++)
+            rtrnMde[i] = findMde[i];
+    }
+    
+    delete []findMde;
+    
+    return rtrnMde;
+}
