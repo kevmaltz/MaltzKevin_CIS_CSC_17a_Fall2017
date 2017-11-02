@@ -152,38 +152,10 @@ void Room::shwRm()
 }
 
 //TODO create shwLyr functions
-void Room::shwLyr0()
+void Room::shwLyr(int lyr)
 {
     for(int i=0; i < rmWdth; i++)
-        cout << rmView[0][i];
-    cout << endl;
-}
-
-void Room::shwLyr1()
-{
-    for(int i=0; i < rmWdth; i++)
-        cout << rmView[1][i];
-    cout << endl;
-}
-
-void Room::shwLyr2()
-{
-    for(int i=0; i < rmWdth; i++)
-        cout << rmView[2][i];
-    cout << endl;
-}
-
-void Room::shwLyr3()
-{
-    for(int i=0; i < rmWdth; i++)
-        cout << rmView[3][i];
-    cout << endl;
-}
-
-void Room::shwLyr4()
-{
-    for(int i=0; i < rmWdth; i++)
-        cout << rmView[4][i];
+        cout << rmView[lyr][i];
     cout << endl;
 }
 
