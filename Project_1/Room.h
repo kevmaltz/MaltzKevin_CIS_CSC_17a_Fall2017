@@ -38,12 +38,7 @@ class Room
         bool chkPsg(crdnl);
         void dstryPsg(crdnl);
         void shwRm();
-        void shwLyr0();
-        void shwLyr1();
-        void shwLyr2();
-        void shwLyr3();
-        void shwLyr4();
-        //TODO create add/remove token functions. pass the token to remove from room to function
+        void shwLyr(int lyr);
         void addTok(char);
         void rmTok(char);
 };
