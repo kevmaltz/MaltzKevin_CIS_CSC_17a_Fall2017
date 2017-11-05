@@ -87,23 +87,25 @@ void Room::mkePsg(crdnl pssg)
     switch(pssg)
     {
         case North:
-            rmView[0][3] = ' ';
+            rmView[0][3] = '|';
             rmView[0][4] = ' ';
-            rmView[0][5] = ' ';
+            rmView[0][5] = '|';
             pssgs[North] = true;
             break;
         case East:
             rmView[2][8] = ' ';
+            //rmView[3][8] = 'T';
             pssgs[East] = true;
             break;
         case South:
-            rmView[4][3] = ' ';
+            rmView[4][3] = '|';
             rmView[4][4] = ' ';
-            rmView[4][5] = ' ';
+            rmView[4][5] = '|';
             pssgs[South] = true;
             break;
         case West:
             rmView[2][0] = ' ';
+            //rmView[3][0] = 'T';
             pssgs[West] = true;
             break;
     }
@@ -156,7 +158,6 @@ void Room::shwLyr(int lyr)
 {
     for(int i=0; i < rmWdth; i++)
         cout << rmView[lyr][i];
-    cout << endl;
 }
 
 void Room::addTok(char pTok)
